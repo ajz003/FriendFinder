@@ -37,7 +37,7 @@
             <h2>Question 1</h2>
             <p>Since [] == 0 and "0" == 0, it should make sense that [] == "0"</p>
             <select class="form-control" id="q1">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -47,7 +47,7 @@
             <h2>Question 2</h2>
             <p>Putting semi-colons at the end of every JavaScript statement is a waste of time.</p>
             <select class="form-control" id="q2">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -57,7 +57,7 @@
             <h2>Question 3</h2>
             <p>I always leave comments throughout my code to help explain it.</p>
             <select class="form-control" id="q3">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -67,7 +67,7 @@
             <h2>Question 4</h2>
             <p>I prefer front end to back end.</p>
             <select class="form-control" id="q4">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -77,7 +77,7 @@
             <h2>Question 5</h2>
             <p>I prefer using indexOf() instead of includes() for checking if arrays contain an element.</p>
             <select class="form-control" id="q5">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -87,7 +87,7 @@
             <h2>Question 6</h2>
             <p>I make new GitHub repos via GitHub and then `git clone` instead of using `git init` in the terminal.</p>
             <select class="form-control" id="q6">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -97,7 +97,7 @@
             <h2>Question 7</h2>
             <p>In MySQL, using "SET" is superior to using "VALUES" for inserting new data into a table.</p>
             <select class="form-control" id="q7">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -107,7 +107,7 @@
             <h2>Question 8</h2>
             <p>`let` is better than `var`.</p>
             <select class="form-control" id="q8">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -117,7 +117,7 @@
             <h2>Question 9</h2>
             <p>`=>` is cool and all, but `function() {}` just feels right.</p>
             <select class="form-control" id="q9">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -127,27 +127,87 @@
             <h2>Question 10</h2>
             <p>I'mma let you finish, but lemonchiffon (#FFFACD) is the greatest color of all time!</p>
             <select class="form-control" id="q10">
-                    <option value="" disabled selected>Choose your Option</option>
+                <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5 (Strongly Agree)</option>
             </select>
-            <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="add-btn">Submit</button>
             <hr>
 
         </form>
         <div class="row d-flex justify-content-center">
-                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/ajz003/FriendFinder">GitHub Repo</a></p>
-        
-            </div>
+            <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/ajz003/FriendFinder">GitHub
+                    Repo</a></p>
+
+        </div>
     </div>
 
+    <script type="text/javascript">
 
-    <script>
+        var allFriends;
 
+        // Question: What does this code do?
+        $("#add-btn").on("click", function (event) {
+            diffArr = [];
+            minIndex = null;
+            min = null;
+            event.preventDefault();
+            console.log("diffarr: " + diffArr)
+            var newFriend = {
+                name: $("#name").val().trim(),
+                photo: $("#photo-link").val().trim(),
+                scores: []
+            };
 
+            for (let i = 1; i < 11; i++) {
+                newFriend.scores.push($('#q' + i).val());
+            }
+
+            $.get("/api/friends/compare")
+                .then(function (data) {
+                    allFriends = data;
+                    console.log("data.length: " + data.length);
+                    for (let i = 0; i < data.length; i++) {
+                        var sumDiff = 0;
+                        for (let j = 0; j < 10; j++) {
+                            sumDiff += Math.abs(newFriend.scores[j] - data[i].scores[j]);
+                            console.log("sumdiff: " + sumDiff);
+                        }
+                        diffArr.push(sumDiff);
+                        console.log("sumdiff: " + sumDiff);
+
+                    }
+                    console.log("diffarr: " + diffArr)
+
+                })
+                .then(function () {
+
+                    var min = diffArr[0];
+                    var minIndex = 0;
+
+                    for (let i = 0; i < diffArr.length - 1; i++) {
+                        if (diffArr[i] < min) {
+                            minIndex = i;
+                            min = diffArr[i];
+                        }
+                    }
+
+                    console.log(minIndex);
+                    console.log(allFriends);
+                    console.log(allFriends[minIndex].name + " is your best match!")
+                }).then(function () {
+
+                    $.post("/api/friends", newFriend)
+                        .then(function (data) {
+                            console.log("survey.html", data);
+                            alert("Adding friend...");
+                        })
+
+                })
+        })
 
     </script>
 </body>
