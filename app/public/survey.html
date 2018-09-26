@@ -1,14 +1,155 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+
+    <style>
+
+        select {
+    margin-bottom: 20px;
+}
+
+</style>
+
 </head>
+
 <body>
-    welcome survey
+
+    <div class="container">
+
+        <form>
+            <h1>Survey Questions</h1>
+            <hr>
+            <h2>About You</h2>
+            <label for="name">Name (Required)</label>
+            <input type="text" class="form-control" id="name">
+            <label for="photo-link">Link to Photo Image (Required)</label>
+            <input type="text" class="form-control" id="photo-link">
+            <hr>
+            <h2>Question 1</h2>
+            <p>Since [] == 0 and "0" == 0, it should make sense that [] == "0"</p>
+            <select class="form-control" id="q1">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 2</h2>
+            <p>Putting semi-colons at the end of every JavaScript statement is a waste of time.</p>
+            <select class="form-control" id="q2">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 3</h2>
+            <p>I always leave comments throughout my code to help explain it.</p>
+            <select class="form-control" id="q3">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 4</h2>
+            <p>I prefer front end to back end.</p>
+            <select class="form-control" id="q4">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 5</h2>
+            <p>I prefer using indexOf() instead of includes() for checking if arrays contain an element.</p>
+            <select class="form-control" id="q5">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 6</h2>
+            <p>I make new GitHub repos via GitHub and then `git clone` instead of using `git init` in the terminal.</p>
+            <select class="form-control" id="q6">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 7</h2>
+            <p>In MySQL, using "SET" is superior to using "VALUES" for inserting new data into a table.</p>
+            <select class="form-control" id="q7">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 8</h2>
+            <p>`let` is better than `var`.</p>
+            <select class="form-control" id="q8">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 9</h2>
+            <p>`=>` is cool and all, but `function() {}` just feels right.</p>
+            <select class="form-control" id="q9">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h2>Question 10</h2>
+            <p>I'mma let you finish, but lemonchiffon (#FFFACD) is the greatest color of all time!</p>
+            <select class="form-control" id="q10">
+                    <option value="" disabled selected>Choose your Option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+            <hr>
+
+        </form>
+        <div class="row d-flex justify-content-center">
+                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/ajz003/FriendFinder">GitHub Repo</a></p>
+        
+            </div>
+    </div>
+
+
+    <script>
+
+
+
+    </script>
 </body>
+
 </html>

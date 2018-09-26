@@ -14,6 +14,8 @@ var newFriend = req.body;
 friends_db.push(newFriend);
 
 res.json(newFriend);
+
+console.log(newFriend);
 });
 
 module.exports = router;
