@@ -8,7 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
     <style>
@@ -30,7 +34,7 @@
             <hr>
             <h2>About You</h2>
             <label for="name">Name (Required)</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" required>
             <label for="photo-link">Link to Photo Image (Required)</label>
             <input type="text" class="form-control" id="photo-link">
             <hr>
@@ -134,7 +138,7 @@
                 <option value="4">4</option>
                 <option value="5">5 (Strongly Agree)</option>
             </select>
-            <button type="button" class="btn btn-primary btn-lg btn-block" id="add-btn">Submit</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="add-btn" data-toggle="modal" data-target="#exampleModal">Submit</button>
             <hr>
 
         </form>
@@ -145,16 +149,38 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="your-match-name">#</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="photo-goes-here">
+                    <img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"
+                        class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
 
         var allFriends;
 
         // Question: What does this code do?
         $("#add-btn").on("click", function (event) {
+            event.preventDefault();
             diffArr = [];
             minIndex = null;
             min = null;
-            event.preventDefault();
             console.log("diffarr: " + diffArr)
             var newFriend = {
                 name: $("#name").val().trim(),
@@ -198,12 +224,16 @@
                     console.log(minIndex);
                     console.log(allFriends);
                     console.log(allFriends[minIndex].name + " is your best match!")
+
+                    $("#your-match-name").html(allFriends[minIndex].name)
+                    $("#photo-goes-here").html(`<img src="${allFriends[minIndex].photo}" class="img-fluid mx-auto d-block">`)
+
                 }).then(function () {
 
                     $.post("/api/friends", newFriend)
                         .then(function (data) {
                             console.log("survey.html", data);
-                            alert("Adding friend...");
+
                         })
 
                 })
