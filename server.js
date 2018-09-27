@@ -13,16 +13,6 @@ app.use(require("./app/routing/htmlRoutes.js"));
 app.use(require("./app/routing/apiRoutes.js")); 
 
 
-app.get("/api/friends/compare", function(req, res) {
-    
-   return res.json(friends_db);
-
-  });
-
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '../public/home.html'));
-  });
-
 app.listen(PORT, function(){
     console.log("Connected to port " + PORT)
 });
