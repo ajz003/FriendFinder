@@ -19,6 +19,9 @@ app.get("/api/friends/compare", function(req, res) {
 
   });
 
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../public/home.html'));
+  });
 
 app.listen(PORT, function(){
     console.log("Connected to port " + PORT)

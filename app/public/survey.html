@@ -39,7 +39,7 @@
             <input type="text" class="form-control" id="photo-link">
             <hr>
             <h2>Question 1</h2>
-            <p>Since [] == 0 and "0" == 0, it should make sense that [] == "0"</p>
+            <p>Since [] == 0 and "0" == 0, it should make sense that [] == "0".</p>
             <select class="form-control" id="q1">
                 <option value="" disabled selected>Choose your Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -249,7 +249,7 @@
                         console.log(allFriends);
                         console.log(allFriends[minIndex].name + " is your best match!")
 
-                        $("#your-match-name").html(allFriends[minIndex].name)
+                        $("#your-match-name").html(allFriends[minIndex].name + " is your best friend match!")
                         $("#photo-goes-here").html(`<img src="${allFriends[minIndex].photo}" class="img-fluid mx-auto d-block">`)
 
                     }).then(function () {
