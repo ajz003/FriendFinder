@@ -216,7 +216,7 @@
                     newFriend.scores.push($('#q' + i).val());
                 }
 
-                $.get("/api/friends/compare")
+                $.get("/api/friends/")
                     .then(function (data) {
                         allFriends = data;
                         console.log("data.length: " + data.length);
